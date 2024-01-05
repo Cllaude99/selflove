@@ -35,19 +35,27 @@ const Header = () => {
         <Col>
           <Items>
             <Item>
-              <Link to="/">홈</Link>
+              <Link to="/" style={{ color: '#C5251D' }}>
+                홈
+              </Link>
               {HomeMatch && <Circle layoutId="circle" />}
             </Item>
             <Item>
-              <Link to={'/writeDiary'}>이달의 일지</Link>
+              <Link to={'/writeDiary'} style={{ color: '#C5251D' }}>
+                이달의 일지
+              </Link>
               {WriteMatch && <Circle layoutId="circle" />}
             </Item>
             <Item>
-              <Link to={'/community'}>커뮤니티</Link>
+              <Link to={'/community'} style={{ color: '#C5251D' }}>
+                커뮤니티
+              </Link>
               {CommunityMatch && <Circle layoutId="circle" />}
             </Item>
             <Item>
-              <Link to={'/mypage'}>MY</Link>
+              <Link to={'/mypage'} style={{ color: '#C5251D' }}>
+                MY
+              </Link>
               {MyPageMatch && <Circle layoutId="circle" />}
             </Item>
           </Items>
@@ -79,7 +87,7 @@ const Items = styled.ul`
   align-items: center;
 `;
 const Item = styled.li`
-  margin-right: 20px;
+  margin-right: 40px;
   position: relative;
   display: flex;
   flex-direction: column;
