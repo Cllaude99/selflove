@@ -35,25 +35,34 @@ const Header = () => {
         <Col>
           <Items>
             <Item>
-              <Link to="/" style={{ color: '#C5251D' }}>
+              <Link to="/" style={{ color: '#C5251D', fontWeight: 600 }}>
                 홈
               </Link>
               {HomeMatch && <Circle layoutId="circle" />}
             </Item>
             <Item>
-              <Link to={'/writeDiary'} style={{ color: '#C5251D' }}>
+              <Link
+                to={'/writeDiary'}
+                style={{ color: '#C5251D', fontWeight: 600 }}
+              >
                 이달의 일지
               </Link>
               {WriteMatch && <Circle layoutId="circle" />}
             </Item>
             <Item>
-              <Link to={'/community'} style={{ color: '#C5251D' }}>
+              <Link
+                to={'/community'}
+                style={{ color: '#C5251D', fontWeight: 600 }}
+              >
                 커뮤니티
               </Link>
               {CommunityMatch && <Circle layoutId="circle" />}
             </Item>
             <Item>
-              <Link to={'/mypage'} style={{ color: '#C5251D' }}>
+              <Link
+                to={'/mypage'}
+                style={{ color: '#C5251D', fontWeight: 600 }}
+              >
                 MY
               </Link>
               {MyPageMatch && <Circle layoutId="circle" />}
@@ -76,7 +85,6 @@ const Nav = styled(motion.nav)`
   top: 0;
   font-size: 18px;
   padding: 15px 20px;
-  border: 1px solid red;
 `;
 const Col = styled.div`
   display: flex;

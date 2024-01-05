@@ -83,7 +83,6 @@ a{
 `;
 const Layout = styled.div`
   display: flex;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
-  border: 1px solid blue;
 `;
