@@ -2,8 +2,12 @@ import styled from 'styled-components';
 import { ReactComponent as Logo1 } from '../assets/imgs/Splash1.svg';
 import { ReactComponent as Logo2 } from '../assets/imgs/Splash2.svg';
 import { ReactComponent as Logo3 } from '../assets/imgs/Splash3.svg';
-import { Link, useMatch } from 'react-router-dom';
+import { Link, useMatch, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import { setCookie } from '../Cookie';
+import { useSetRecoilState } from 'recoil';
+import { LoginState } from '../atoms';
 
 interface IForm {
   userName: string;
@@ -11,11 +15,33 @@ interface IForm {
 }
 
 const LandingPage = () => {
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm<IForm>();
+  const setIsLogin = useSetRecoilState(LoginState);
   const LoginMatch = useMatch('/');
   const SignUpMatch = useMatch('/signUp');
 
-  const onValid = (data: IForm) => {};
+  const onValid = ({ userName, password }: IForm) => {
+    if (LoginMatch) {
+      axios
+        .post(
+          `/api/user/login`,
+          { email: userName, password },
+          { withCredentials: true }
+        )
+        .then((res: { data: { sessionId: string } }) => {
+          localStorage.setItem('sessionId', res.data.sessionId);
+          setCookie('sessionId', res.data.sessionId);
+          setIsLogin(true);
+          navigate(`/`);
+        })
+        .catch((err: any) => {
+          console.log('로그인 실패', err);
+        });
+    }
+    if (SignUpMatch) {
+    }
+  };
   return (
     <Container>
       <Wrapper>
@@ -122,6 +148,7 @@ const Form = styled.form`
     margin-bottom: 30px;
     background-color: white;
     border: none;
+    padding-left: 20px;
   }
   input[type='submit'] {
     border-radius: 30px;

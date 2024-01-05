@@ -1,6 +1,7 @@
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { styled } from 'styled-components';
+import { ReactComponent as Delete } from '../assets/imgs/delete.svg';
 
 interface IDragabbleCardProps {
   toDoId: number;
@@ -8,6 +9,7 @@ interface IDragabbleCardProps {
   index: number;
 }
 const DragabbleCard = ({ toDoId, index, toDoText }: IDragabbleCardProps) => {
+  const handleDelete = () => {};
   return (
     <Draggable draggableId={toDoId + ''} index={index} key={index}>
       {(provided, snapshot) => (
@@ -18,6 +20,7 @@ const DragabbleCard = ({ toDoId, index, toDoText }: IDragabbleCardProps) => {
           {...provided.draggableProps}
         >
           {toDoText}
+          <Delete onClick={handleDelete} />
         </Card>
       )}
     </Draggable>
@@ -34,4 +37,9 @@ const Card = styled.div<{ isDragging: boolean }>`
   margin-bottom: 5px;
   box-shadow: ${(props) =>
     props.isDragging ? '0px 2px 5px rgba(0,0,0,0.5)' : 'none'};
+  position: relative;
+  svg {
+    position: absolute;
+    right: 0;
+  }
 `;

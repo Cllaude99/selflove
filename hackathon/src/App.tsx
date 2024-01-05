@@ -8,6 +8,7 @@ import { useRecoilValue } from 'recoil';
 import { LoginState } from './atoms';
 import LandingPage from './pages/LandingPage';
 import Home from './pages/Home';
+import Footer from './components/Footer';
 
 function App() {
   const isLogin = useRecoilValue(LoginState);
@@ -18,6 +19,7 @@ function App() {
       <Layout>
         <Outlet />
       </Layout>
+      {isLogin && <Footer />}
     </>
   );
 }

@@ -1,38 +1,25 @@
 import { styled } from 'styled-components';
 import logo from '../assets/imgs/Logo.svg';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Graph from './Graph';
 import home_icon from '../assets/imgs/main-page-icon.png';
 import DiaryBlock from '../components/DiaryBlock';
+import axios from 'axios';
 
 export interface IDiary {
-  id: number;
+  did: number;
   title: string;
   content: string;
-  createdAt: Date;
+  createdAt: string;
+}
+export interface IUser {
+  uid: number;
+  nickname: string;
+  email: string;
+  password: string;
 }
 
 const user = { name: '럽다이브', checklist: 7, record: 23, complete: 12 };
-const diarys: IDiary[] = [
-  {
-    id: 1,
-    title: '1번 일기',
-    content: '1번 일기 입니당.',
-    createdAt: new Date(),
-  },
-  {
-    id: 2,
-    title: '2번 일기',
-    content: '2번 일기 입니당.',
-    createdAt: new Date(),
-  },
-  {
-    id: 3,
-    title: '3번 일기',
-    content: '3번 일기 입니당.',
-    createdAt: new Date(),
-  },
-];
 
 const getLastDate = (): Number => {
   const date = new Date();
@@ -41,6 +28,13 @@ const getLastDate = (): Number => {
 };
 
 const Home = () => {
+  const [diarys, setDiarys] = useState<IDiary[]>([]);
+  useEffect(() => {
+    axios.get('http://43.200.169.208:8000/diary/1').then((res) => {
+      console.log(res.data);
+      setDiarys(res.data);
+    });
+  }, []);
   const onClickAddDiary = useCallback(() => {
     console.log('click add diary');
   }, []);
@@ -56,7 +50,7 @@ const Home = () => {
         </NameContainer>
         <MainContainer>
           <TitleContainer>
-            <h3>{user.name}님 반가와요!</h3>
+            <h3>{user.name}님 반가워요!</h3>
             <h3>오늘도 열심히 자기애 충전!</h3>
             <BoxContainer>
               <Box>
@@ -93,7 +87,7 @@ const Home = () => {
               <p>작성 일</p>
             </DiaryListHeader>
             {diarys.map((diary) => (
-              <DiaryBlock key={diary.id} diary={diary} />
+              <DiaryBlock key={diary.did} diary={diary} />
             ))}
           </DiaryListConianer>
         </PostContainer>

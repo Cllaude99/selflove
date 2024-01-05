@@ -10,12 +10,21 @@ export interface ITodo {
   cid: number;
   content: string;
 }
+export interface IUser {
+  uid: number;
+}
 export const LoginState = atom<boolean>({
   key: 'LoginState',
-  default: false,
+  default: true,
   effects_UNSTABLE: [persistAtom],
 });
 
+export const UserState = atom<IUser>({
+  key: 'userState',
+  default: {
+    uid: 1,
+  },
+});
 export const checkListState = atom<ICheckState>({
   key: 'checkList',
   default: {
