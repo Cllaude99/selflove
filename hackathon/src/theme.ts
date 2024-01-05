@@ -19,5 +19,7 @@ export const theme: DefaultTheme = {
     lighter: '#EBE8E8',
     lightdark: '#C2C0C0',
   },
+  pink: '#FF000033',
+  logoColor: '#C5251D',
   yellow: '#F9DF83',
 };

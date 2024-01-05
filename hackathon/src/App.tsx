@@ -1,16 +1,23 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import { Outlet } from 'react-router-dom';
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+import { useRecoilValue } from 'recoil';
+import { LoginState } from './atoms';
+import LandingPage from './pages/LandingPage';
+import Home from './pages/Home';
 
 function App() {
+  const isLogin = useRecoilValue(LoginState);
   return (
     <>
       <GlobalStyle />
-      <Header />
-      <Outlet />
+      {isLogin ? <Header /> : null}
+      <Layout>
+        <Outlet />
+      </Layout>
     </>
   );
 }
@@ -73,4 +80,10 @@ a{
   text-decoration: none;  
   color: inherit;
 }
+`;
+const Layout = styled.div`
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  border: 1px solid blue;
 `;

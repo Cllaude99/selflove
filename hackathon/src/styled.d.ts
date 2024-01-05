@@ -20,6 +20,8 @@ declare module 'styled-components' {
       lighter: string;
       lightdark: string;
     };
+    pink: string;
+    logoColor: string;
     yellow: string;
   }
 }
