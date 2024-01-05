@@ -2,12 +2,36 @@ import { styled } from 'styled-components';
 import logo from '../assets/imgs/Logo.svg';
 import { useCallback } from 'react';
 import Graph from './Graph';
+import home_icon from '../assets/imgs/main-page-icon.png';
+import DiaryBlock from '../components/DiaryBlock';
+
+export interface IDiary {
+  id: number;
+  title: string;
+  content: string;
+  createdAt: Date;
+}
 
 const user = { name: '럽다이브', checklist: 7, record: 23, complete: 12 };
-const diary = [
-  { id: 1, title: '1번 일기', content: '1번 일기 입니당.' },
-  { id: 2, title: '2번 일기', content: '2번 일기 입니당.' },
-  { id: 3, title: '3번 일기', content: '3번 일기 입니당.' },
+const diarys: IDiary[] = [
+  {
+    id: 1,
+    title: '1번 일기',
+    content: '1번 일기 입니당.',
+    createdAt: new Date(),
+  },
+  {
+    id: 2,
+    title: '2번 일기',
+    content: '2번 일기 입니당.',
+    createdAt: new Date(),
+  },
+  {
+    id: 3,
+    title: '3번 일기',
+    content: '3번 일기 입니당.',
+    createdAt: new Date(),
+  },
 ];
 
 const getLastDate = (): Number => {
@@ -49,14 +73,16 @@ const Home = () => {
               </Box>
             </BoxContainer>
           </TitleContainer>
+          <HomeIcon src={home_icon} alt="home-icon" />
         </MainContainer>
         <Graph />
         <PostContainer>
           <PostHeaderContiner>
             <PostHeader>
               <h5>이번 달 내가 작성한 글</h5>
-              <p>{diary.length}개의 글</p>
+              <p>{diarys.length}개의 글</p>
             </PostHeader>
+
             <AddDiaryButton onClick={onClickAddDiary}>
               <p>+글쓰기</p>
             </AddDiaryButton>
@@ -66,6 +92,9 @@ const Home = () => {
               <p>글 제목</p>
               <p>작성 일</p>
             </DiaryListHeader>
+            {diarys.map((diary) => (
+              <DiaryBlock key={diary.id} diary={diary} />
+            ))}
           </DiaryListConianer>
         </PostContainer>
       </HomeContainer>
@@ -123,6 +152,7 @@ const MainContainer = styled.div`
   justify-content: flex-start;
   height: 200px;
   width: 70%;
+  margin-bottom: 120px;
 `;
 
 const TitleContainer = styled.div`
@@ -133,6 +163,12 @@ const TitleContainer = styled.div`
     font-weight: 600;
     line-height: 68px;
   }
+`;
+
+const HomeIcon = styled.img`
+  width: 428px;
+  height: 369px;
+  transform: translateY(-10%);
 `;
 
 const BoxContainer = styled.div`
