@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import KanbanBoard from '../components/KanbanBoard';
 
 const WriteDiary = () => {
   // 백으로 부터
@@ -17,7 +18,9 @@ const WriteDiary = () => {
           border: '1px solid black',
           margin: '0 auto',
         }}
-      ></div>
+      >
+        <KanbanBoard />
+      </div>
       <Container2>
         <Area>
           <h1>오늘의 점수</h1>
