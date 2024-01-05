@@ -5,6 +5,7 @@ import WriteDiary from '../pages/WriteDiary';
 import Community from '../pages/Community';
 import MyPage from '../pages/MyPage';
 import MainPage from '../pages/MainPage';
+import LandingPage from '../pages/LandingPage';
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <MainPage />,
+      },
+      {
+        path: '/signUp',
+        element: <LandingPage />,
       },
       {
         path: 'writeDiary',

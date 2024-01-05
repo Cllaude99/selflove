@@ -12,7 +12,7 @@ export interface ITodo {
 }
 export const LoginState = atom<boolean>({
   key: 'LoginState',
-  default: true,
+  default: false,
   effects_UNSTABLE: [persistAtom],
 });
 
